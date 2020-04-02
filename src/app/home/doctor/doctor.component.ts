@@ -2,36 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
-@Component({
-  selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.css']
-})
-export class DoctorComponent implements OnInit {
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
-
-  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-
-  // @ViewChild(this.MatPaginator, {static: true}) paginator: MatPaginator;
-
-  constructor() {
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
-  }
-
-}
-
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -50,7 +20,31 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-
 ];
+
+@Component({
+  selector: 'app-doctor',
+  templateUrl: './doctor.component.html',
+  styleUrls: ['./doctor.component.css']
+})
+export class DoctorComponent implements OnInit {
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  constructor() {
+  }
+
+
+  ngOnInit() {
+  }
+
+}
+
+
+
 
 
