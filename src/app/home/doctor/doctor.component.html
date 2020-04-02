@@ -66,10 +66,6 @@
           </div>
         </div>
       </div>
-
-      <div class="col-md-6 ">
-        <input class="btn btn-danger button" type="button" value="Delete">
-      </div>
     </div>
   </div>
 
@@ -80,32 +76,32 @@
         <table class="table">
           <thead class="table_heading">
           <tr>
-            <th  style="text-align: center; ">id</th>
+            <th style="text-align: center; ">id</th>
             <th style="text-align: center; ">NAME</th>
-            <th  style="text-align: center; ">LOCATION</th>
+            <th style="text-align: center; ">LOCATION</th>
             <th style="text-align: center; ">CONTACT NO.</th>
-            <th  style="text-align: center; ">APPROVAL</th>
-            <th  style="text-align: center; ">EDIT</th>
-            <th  style="text-align: center; ">DELETE</th>
+            <th style="text-align: center; ">APPROVAL</th>
+            <th style="text-align: center; ">EDIT</th>
+            <th style="text-align: center; ">DELETE</th>
           </tr>
           </thead>
 
           <tbody style="border-bottom: 1px solid darkgrey;">
           <tr>
-            <td  style="text-align: center; ">1</td>
-            <td  style="text-align: center;">Admin</td>
-            <td  style="text-align: center; ">Indore</td>
-            <td  style="text-align: center;">9874563210</td>
+            <td style="text-align: center; ">1</td>
+            <td style="text-align: center;">Admin</td>
+            <td style="text-align: center; ">Indore</td>
+            <td style="text-align: center;">9874563210</td>
             <td style="text-align: center;">
-<!--              <label class="check_box" style="text-align: center;">-->
-<!--              <input checked="checked" type="checkbox">-->
-<!--              <span class="checkmark"></span>-->
-<!--            </label>-->
+              <!--              <label class="check_box" style="text-align: center;">-->
+              <!--              <input checked="checked" type="checkbox">-->
+              <!--              <span class="checkmark"></span>-->
+              <!--            </label>-->
             </td>
-            <td  style="text-align: center;">
+            <td style="text-align: center;">
               <button class="btn btn-warning table_button" type="button">Edit</button>
             </td>
-            <td  style="text-align: center;">
+            <td style="text-align: center;">
               <button class="btn btn-danger table_button" type="button">Delete</button>
             </td>
           </tr>
@@ -116,46 +112,47 @@
     </div>
   </div>
 
-  <!--  <div class="row">-->
-  <!--    <div class="col-md-12">-->
-  <!--      <div class="mat-elevation-z8">-->
-  <!--  <table mat-table [dataSource]="dataSource">-->
+  <div class="row">
+    <div class="col-md-12">
 
-  <!--    &lt;!&ndash; Position Column &ndash;&gt;-->
-  <!--    <ng-container matColumnDef="position">-->
-  <!--      <th mat-header-cell *matHeaderCellDef> No. </th>-->
-  <!--      <td mat-cell *matCellDef="let element"> {{element.position}} </td>-->
-  <!--    </ng-container>-->
-
-  <!--    &lt;!&ndash; Name Column &ndash;&gt;-->
-  <!--    <ng-container matColumnDef="name">-->
-  <!--      <th mat-header-cell *matHeaderCellDef> Name </th>-->
-  <!--      <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
-  <!--    </ng-container>-->
-
-  <!--    &lt;!&ndash; Weight Column &ndash;&gt;-->
-  <!--    <ng-container matColumnDef="weight">-->
-  <!--      <th mat-header-cell *matHeaderCellDef> Weight </th>-->
-  <!--      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
-  <!--    </ng-container>-->
-
-  <!--    &lt;!&ndash; Symbol Column &ndash;&gt;-->
-  <!--    <ng-container matColumnDef="symbol">-->
-  <!--      <th mat-header-cell *matHeaderCellDef> Symbol </th>-->
-  <!--      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
-  <!--    </ng-container>-->
-
-  <!--    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-  <!--    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-  <!--  </table>-->
-
-  <!--  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
-  <!--</div>-->
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input (keyup)="applyFilter($event)" matInput placeholder="Search.....">
+      </mat-form-field>
 
 
-  <!--    </div>-->
-  <!--  </div>-->
+      <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
 
-  <!--</div>-->
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th *matHeaderCellDef mat-header-cell> No.</th>
+          <td *matCellDef="let element" mat-cell> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef mat-header-cell> Name</th>
+          <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th *matHeaderCellDef mat-header-cell> Weight</th>
+          <td *matCellDef="let element" mat-cell> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th *matHeaderCellDef mat-header-cell> Symbol</th>
+          <td *matCellDef="let element" mat-cell> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+      </table>
+
+
+    </div>
+  </div>
 
 </div>
