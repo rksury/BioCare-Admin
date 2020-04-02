@@ -11,11 +11,13 @@ import {SignupComponent} from './signup/signup.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,

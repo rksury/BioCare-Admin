@@ -2,14 +2,21 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {DoctorComponent} from './doctor/doctor.component';
+import {ChemistComponent} from './chemist/chemist.component';
+import {LabComponent} from './lab/lab.component';
 
 
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent,
-        children: [
+    children: [
 
-      { path: 'dashboard', component: DashboardComponent },
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'doctor', component: DoctorComponent},
+      {path: 'chemist', component: ChemistComponent},
+      {path: 'lab', component: LabComponent},
+      {path: '', redirectTo: '/home/dashboard', pathMatch: 'full'},
     ]
 
   },
