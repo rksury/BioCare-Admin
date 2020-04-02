@@ -15,6 +15,24 @@ export class AuthService {
     return this.godService.post('user/login', data);
   }
 
+  getUser() {
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    if (user) {
+      return user;
+    } else {
+      return {
+        id: 1,
+        username: '',
+        email: '',
+        mobile_number: '',
+        first_name: '',
+        last_name: '',
+        full_name: ' ',
+        address: null
+      };
+    }
+  }
+
   logout() {
     window.localStorage.clear();
     this.router.navigate(['/login']);
