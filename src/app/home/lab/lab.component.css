@@ -1,0 +1,20 @@
+.button{
+  width: 20%;
+  font-weight: bold;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+}
+
+.doctor_form{
+  width: 70%;
+}
+.table_heading {
+  /*width: auto;*/
+  background-color: #1e282c;
+  color: white;
+  height:46px;
+  text-align: center;
+}
+
+.table_button{
+  width: 100px;
+}

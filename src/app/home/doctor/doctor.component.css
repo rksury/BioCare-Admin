@@ -15,19 +15,22 @@
   text-align: center;
 }
 
+.table_button{
+  width: 100px;
+}
+
                                       /*    checkbox           */
 
 .check_box {
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  /*padding-left: 35px;*/
+  /*margin-bottom: 12px;*/
   cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
 /* Hide the browser's default checkbox */
