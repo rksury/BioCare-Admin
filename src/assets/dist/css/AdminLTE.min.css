@@ -526,7 +526,7 @@ a:hover, a:active, a:focus {
 }
 
 .sidebar {
-    padding-bottom: 10px
+    padding-bottom: 10px;
 }
 
 .sidebar-form input:focus {

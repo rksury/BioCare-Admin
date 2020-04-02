@@ -74,7 +74,7 @@
   </div>
 
 
-  <div class="container-fluid" style=" margin-top: 2%;">
+  <div class="container-fluid" style=" margin-top: 2%; background-color: whitesmoke;">
     <div class="row">
       <div class="col-md-12 ">
         <table class="table">
@@ -83,7 +83,8 @@
             <th>id</th>
             <th>NAME</th>
             <th>LOCATION</th>
-            <th>CONTACT NUMBER</th>
+            <th>CONTACT NO.</th>
+            <th>APPROVAL</th>
             <th>EDIT</th>
             <th>DELETE</th>
           </tr>
@@ -95,6 +96,11 @@
             <td>Example</td>
             <td>indore</td>
             <td>9874563210</td>
+            <td style="border:1px solid red; ">
+              <label class="check_box">
+              <input checked="checked" type="checkbox">
+              <span class="checkmark"></span>
+            </label></td>
             <td>
               <button class="btn btn-warning" type="button">Edit</button>
             </td>
@@ -103,6 +109,7 @@
             </td>
           </tr>
           </tbody>
+
         </table>
       </div>
     </div>
