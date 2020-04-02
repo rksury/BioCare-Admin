@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  base_Url : 'https://biocare.herokuapp.com/'
+  // base_Url : 'https://biocare.herokuapp.com/'
+  base_Url : 'http://127.0.0.1:8000/'
 };
 
 /*

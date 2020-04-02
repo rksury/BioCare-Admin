@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../Services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,31 +10,31 @@ import {FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-   // public errorMessage = {
-   //      email: [
-   //          {type: 'required', message: 'email required'},
-   //
-   //
-   //      ],
-   //      password: [
-   //          {type: 'required', message: 'password required'},
-   //          {type: 'maxlength', message: 'username cant be longer than 50 characters'},
-   //          {type: 'minlength', message: 'username must be 4 characters'},
-   //
-   //      ]
-   //  };
-   //
-   // submitform = this.formbuilder.group({
-   //      email: ['string', Validators.required, Validators.email],
-   //      password: ['string', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]]
-   //  });
+  // public errorMessage = {
+  //      email: [
+  //          {type: 'required', message: 'email required'},
+  //
+  //
+  //      ],
+  //      password: [
+  //          {type: 'required', message: 'password required'},
+  //          {type: 'maxlength', message: 'username cant be longer than 50 characters'},
+  //          {type: 'minlength', message: 'username must be 4 characters'},
+  //
+  //      ]
+  //  };
+  //
+  // submitform = this.formbuilder.group({
+  //      email: ['string', Validators.required, Validators.email],
+  //      password: ['string', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]]
+  //  });
 
 
   submitform = new FormGroup({
-        email: new FormControl(''),
-        password: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
 
-    });
+  });
 
   // get email() {
   //       return this.submitform.get('email');
@@ -44,12 +45,20 @@ export class LoginComponent implements OnInit {
   //   }
 
 
+  constructor(private router: Router,
+              private authService: AuthService) {
+  }
 
-  constructor( private router: Router) { }
+  ngOnInit() {
+  }
 
-  ngOnInit(){}
-
-onSubmit(){
+  onSubmit() {
     console.warn(this.submitform.value);
-}
+    this.authService.login(this.submitform.value).subscribe(
+      data => {
+        window.localStorage.setItem('token', data['token']);
+        this.router.navigate(['/home/dashboard']);
+      }
+    );
+  }
 }
