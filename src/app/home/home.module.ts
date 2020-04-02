@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { ChemistComponent } from './chemist/chemist.component';
 import { LabComponent } from './lab/lab.component';
+import { PatientComponent } from './patient/patient.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LabComponent } from './lab/lab.component';
     DashboardComponent,
     DoctorComponent,
     ChemistComponent,
-    LabComponent
+    LabComponent,
+    PatientComponent
   ],
 
   imports: [
