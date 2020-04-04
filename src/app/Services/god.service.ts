@@ -46,4 +46,20 @@ export class GodService {
     };
     return this.httpClient.post(this.baseUrl + url, data, httpOptions)
   }
+
+  authDelete(url) {
+    const httpOptions = {
+      headers: {'Content-Type': 'application/json'},
+    };
+    return this.httpClient.delete(this.baseUrl + url, httpOptions);
+
+  }
+
+  authUpdate(url, body) {
+    const httpOptions = {
+      headers: {'Content-Type': 'application/json'},
+    };
+    return this.httpClient.put(this.baseUrl + url, body, httpOptions);
+
+  }
 }
