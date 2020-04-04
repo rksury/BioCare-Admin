@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LabService} from '../../Services/lab/lab.service';
 
 @Component({
   selector: 'app-lab',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lab.component.css']
 })
 export class LabComponent implements OnInit {
+  labs;
+  show = false;
+  dtOptions: DataTables.Settings = {};
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(private labService: LabService) {
   }
 
+  ngOnInit(): void {
+    this.getLabs();
+  }
+
+  getLabs() {
+    this.labService.getLabs().subscribe(labs => {
+      this.labs = labs;
+      this.show = true;
+    });
+  }
 }
