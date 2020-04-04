@@ -1,81 +1,107 @@
 <div class="content-wrapper">
 
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>Dashboard</h1>
-      </section>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>Dashboard</h1>
+  </section>
 
 
-      <!-- Main content -->
-      <section class="content">
-        <!-- Info boxes -->
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Doctor's</span>
-                <span class="info-box-number">{{count.doctor}}</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+          <div class="info-box-content">
+            <span class="info-box-text">Doctor's</span>
+            <span class="info-box-number">{{count.doctor}}</span>
           </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Labs</span>
-                <span class="info-box-number">{{count.lab}}</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-
-          <!-- fix for small devices only -->
-          <div class="clearfix visible-sm-block"></div>
-
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Chemists</span>
-                <span class="info-box-number">{{count.chemist}}</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Patients</span>
-                <span class="info-box-number">2,00</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
+          <!-- /.info-box-content -->
         </div>
-        <!-- /.row -->
-      </section>
-      <!-- /.content -->
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
 
+          <div class="info-box-content">
+            <span class="info-box-text">Labs</span>
+            <span class="info-box-number">{{count.lab}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
 
+      <!-- fix for small devices only -->
+      <div class="clearfix visible-sm-block"></div>
 
-  <!-- /.content-wrapper -->
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
+          <div class="info-box-content">
+            <span class="info-box-text">Chemists</span>
+            <span class="info-box-number">{{count.chemist}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
-  <!--</div>-->
-  <!--</body>-->
+          <div class="info-box-content">
+            <span class="info-box-text">Patients</span>
+            <span class="info-box-number">2,00</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <section *ngIf="show" class="content">
+
+    <table id="dataTable" datatable [dtOptions]="dtOptions" class="display" style="width:100%">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let doctor of UnApprovedDoctors">
+        <td>{{doctor.user.full_name}}</td>
+        <td>{{doctor.user.mobile_number}}</td>
+        <td>{{doctor.user.email}}</td>
+        <td>61</td>
+        <td>2011/04/25</td>
+        <td>$320,800</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+      </tr>
+      </tfoot>
+    </table>
+  </section>
 </div>
