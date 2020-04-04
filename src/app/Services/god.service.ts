@@ -39,4 +39,11 @@ export class GodService {
     return this.httpClient.get(this.baseUrl + url, httpOptions);
 
   }
+
+  authPost(url, data) {
+    const httpOptions = {
+      headers: {'Content-Type': 'application/json'},
+    };
+    return this.httpClient.post(this.baseUrl + url, data, httpOptions)
+  }
 }

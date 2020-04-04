@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {DashboardService} from '../../Services/dashboard/dashboard.service';
 import {AuthService} from '../../Services/auth/auth.service';
 import {MatTableDataSource} from '@angular/material/table';
+import {DoctorService} from "../../Services/doctor/doctor.service";
 
 declare var $: any;
 
@@ -25,7 +26,8 @@ export class DashboardComponent implements OnInit {
   user = {};
 
   constructor(private dashboardService: DashboardService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private doctorService: DoctorService) {
   }
 
   show = false;
@@ -49,5 +51,9 @@ export class DashboardComponent implements OnInit {
       this.UnApprovedChemist = data.pending_approvals.chemist;
       this.show = true;
     });
+  }
+
+  ApproveDoctor(id) {
+    this.doctorService.ApproveDoctor(id).subscribe();
   }
 }
