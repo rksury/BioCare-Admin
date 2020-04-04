@@ -5,72 +5,109 @@
   </section>
 
 
-  <div class="container" style="margin-top: 2%;">
-    <div class="row">
-      <div class="col-md-6 ">
-        <input class="btn btn-primary button" data-target="#myModal" data-toggle="modal" type="button" value="Add+">
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
+<!--  <div class="container" style="margin-top: 2%;">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-6 ">-->
+<!--        <input class="btn btn-primary button" data-target="#myModal" data-toggle="modal" type="button" value="Add+">-->
+<!--        &lt;!&ndash; Modal &ndash;&gt;-->
+<!--        <div class="modal fade" id="myModal" role="dialog">-->
+<!--          <div class="modal-dialog">-->
 
-<!--             Modal content-->
-                        <div class="modal-content">
+<!--            &lt;!&ndash;             Modal content&ndash;&gt;-->
+<!--            <div class="modal-content">-->
 
-                          <div class="modal-header">
-                            <button class="close" data-dismiss="modal" type="button">&times;</button>
-                            <h3 class="modal-title">Doctor Detail</h3>
-                          </div>
-                          <form class="form-horizontal" role="form">
+<!--              <div class="modal-header">-->
+<!--                <button class="close" data-dismiss="modal" type="button">&times;</button>-->
+<!--                <h3 class="modal-title">Doctor Detail</h3>-->
+<!--              </div>-->
+<!--              <form class="form-horizontal" role="form">-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="name" placeholder="Enter Full Name" required type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="name" placeholder="Enter Full Name" required type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="number" placeholder="Contact Number" required type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="number" placeholder="Contact Number" required type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="Address" placeholder="Address" required type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="Address" placeholder="Address" required type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="location" placeholder="Location" required type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="location" placeholder="Location" required type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="type" placeholder="Kind of Doctor" required type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="type" placeholder="Kind of Doctor" required type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="email" placeholder="Email" required type="email">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="email" placeholder="Email" required type="email">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="id" placeholder="Create Id for Doctor" required
-                                     type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="id" placeholder="Create Id for Doctor" required-->
+<!--                         type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-body form-field">
-                              <input class="doctor_form" formControlName="password" placeholder="Create Password for Doctor"
-                                     required type="text">
-                            </div>
+<!--                <div class="modal-body form-field">-->
+<!--                  <input class="doctor_form" formControlName="password" placeholder="Create Password for Doctor"-->
+<!--                         required type="text">-->
+<!--                </div>-->
 
-                            <div class="modal-footer form-field">
-                              <button class="btn btn-primary button" data-dismiss="modal" type="button">Save</button>
-                            </div>
-                          </form>
+<!--                <div class="modal-footer form-field">-->
+<!--                  <button class="btn btn-primary button" data-dismiss="modal" type="button">Save</button>-->
+<!--                </div>-->
+<!--              </form>-->
 
-                        </div>
+<!--            </div>-->
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
 
   <div class="container" style=" margin-top: 2%; background-color: whitesmoke;">
   </div>
+  <section *ngIf="show" class="content">
+
+    <table id="dataTable" datatable [dtOptions]="dtOptions" class="display" style="width:100%">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let doctor of doctors">
+        <td>{{doctor.user.full_name}}</td>
+        <td>{{doctor.user.mobile_number}}</td>
+        <td>{{doctor.user.email}}</td>
+        <td>61</td>
+        <td>2011/04/25</td>
+        <td>
+<!--          <button (click)="ApproveDoctor(doctor.id)">Approve</button>-->
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+      </tr>
+      </tfoot>
+    </table>
+  </section>
 
 </div>

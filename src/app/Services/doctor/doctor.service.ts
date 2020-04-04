@@ -9,8 +9,12 @@ export class DoctorService {
   constructor(private godService: GodService) {
   }
 
+  getDoctors(params?) {
+    return this.godService.authGet('doctor/');
+  }
+
   ApproveDoctor(pk) {
     const data = {id: pk}
-    return this.godService.authPost('doctor/approve', data)
+    return this.godService.authPost('doctor/approve', data);
   }
 }
