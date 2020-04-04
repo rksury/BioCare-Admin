@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DoctorService} from '../../Services/doctor/doctor.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import validate = WebAssembly.validate;
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-doctor',
@@ -28,17 +30,26 @@ export class DoctorComponent implements OnInit {
     country: new FormControl(''),
   });
 
-  constructor(private doctorService: DoctorService) {
+  constructor(private doctorService: DoctorService,
+              private router: Router) {
   }
 
-  dtOptions: DataTables.Settings = {};
+  dtOptions: DataTables.Settings = {
+    lengthChange: false,
+    pageLength: 10,
+
+  };
 
   ngOnInit() {
     this.getDoctors();
   }
 
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
+  }
 
   getDoctors() {
+    // this.show = false;
     this.doctorService.getDoctors().subscribe(doctors => {
       this.doctors = doctors;
       this.show = true;
@@ -50,7 +61,11 @@ export class DoctorComponent implements OnInit {
   }
 
   deleteDoctor(pk) {
-    this.doctorService.deleteDoctor(pk).subscribe();
+    this.doctorService.deleteDoctor(pk).subscribe(data => {
+      // this.getDoctors();
+          this.router.navigate(['/home/doctor']);
+
+    });
   }
 
 
@@ -74,8 +89,13 @@ export class DoctorComponent implements OnInit {
   }
 
   editDoctor() {
-    this.doctorService.updateDoctor(this.doctorToEdit, this.DoctorForm.value).subscribe();
+    this.doctorService.updateDoctor(this.doctorToEdit, this.DoctorForm.value).subscribe(
+      data => {
+        // this.getDoctors();
+      }
+    );
     this.doctorToEdit = null;
+    this.router.navigate(['/home/doctor']);
   }
 }
 

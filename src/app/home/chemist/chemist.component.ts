@@ -36,6 +36,7 @@ export class ChemistComponent implements OnInit {
   }
 
   getChemists() {
+    // this.show = false;
     this.chemistService.getChemists().subscribe(chemists => {
       this.chemists = chemists;
       this.show = true;
@@ -71,7 +72,11 @@ export class ChemistComponent implements OnInit {
   }
 
   editChemist() {
-    this.chemistService.updateChemist(this.chemistToEdit, this.ChemistForm.value).subscribe();
+    this.chemistService.updateChemist(this.chemistToEdit, this.ChemistForm.value).subscribe(
+      data => {
+        this.getChemists();
+      }
+    );
     this.chemistToEdit = null;
     this.ChemistForm.reset();
   }
