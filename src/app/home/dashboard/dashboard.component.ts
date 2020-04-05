@@ -4,9 +4,9 @@ import {AuthService} from '../../Services/auth/auth.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {DoctorService} from '../../Services/doctor/doctor.service';
 import {Subject} from 'rxjs';
-import {DataTableDirective} from "angular-datatables";
-import {ChemistService} from "../../Services/chemist/chemist.service";
-import {LabService} from "../../Services/lab/lab.service";
+import {DataTableDirective} from 'angular-datatables';
+import {ChemistService} from '../../Services/chemist/chemist.service';
+import {LabService} from '../../Services/lab/lab.service';
 
 declare var $: any;
 
@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
   dtOptions: DataTables.Settings = {
     pageLength: 10
   };
-  dtTrigger: Subject = new Subject();
+  // dtTrigger: Subject = new Subject();
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
       this.UnApprovedLabs = data.pending_approvals.labs;
       this.UnApprovedChemist = data.pending_approvals.chemist;
       this.show = true;
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
 
     });
   }
@@ -105,7 +105,7 @@ export class DashboardComponent implements OnInit {
       // Destroy the table first
       dtInstance.destroy();
       // Call the dtTrigger to rerender again
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
     });
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChemistService} from '../../Services/chemist/chemist.service';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-chemist',
@@ -11,6 +11,7 @@ export class ChemistComponent implements OnInit {
   chemists;
   show = false;
   chemistToEdit;
+  errorMessage;
   dtOptions: DataTables.Settings = {};
 
   ChemistForm = new FormGroup({
@@ -43,8 +44,22 @@ export class ChemistComponent implements OnInit {
     });
   }
 
+  // addChemist() {
+  //   this.chemistService.addChemist(this.ChemistForm.value).subscribe();
+  // }
+
   addChemist() {
-    this.chemistService.addChemist(this.ChemistForm.value).subscribe();
+    console.log(this.ChemistForm)
+    this.chemistService.addChemist(this.ChemistForm.value).subscribe(
+      data => {
+      }, error => {
+        if (error.status === 400) {
+          console.log(error);
+          this.errorMessage = error.error;
+        }
+
+      }
+    );
   }
 
   deleteChemist(pk) {

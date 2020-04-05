@@ -12,7 +12,7 @@ export class LabComponent implements OnInit {
   show = false;
   dtOptions: DataTables.Settings = {};
   labToEdit;
-
+errorMessage;
 
   LabForm = new FormGroup({
     username: new FormControl(''),
@@ -43,7 +43,17 @@ export class LabComponent implements OnInit {
   }
 
   addLab() {
-    this.labService.addLab(this.LabForm.value).subscribe();
+    console.log(this.LabForm)
+    this.labService.addLab(this.LabForm.value).subscribe(
+      data => {
+      }, error => {
+        if (error.status === 400) {
+          console.log(error);
+          this.errorMessage = error.error;
+        }
+
+      }
+    );
   }
 
   deleteLab(pk) {
