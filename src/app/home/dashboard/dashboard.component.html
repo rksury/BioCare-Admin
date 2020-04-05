@@ -69,9 +69,10 @@
     </div>
     <!-- /.row -->
   </section>
-  <section *ngIf="show" class="content">
+  <section class="content">
 
-    <table id="dataTable" datatable [dtOptions]="dtOptions" class="display" style="width:100%">
+    <table id="dataTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" data-page-length='10'
+           class="display" style="width:100%">
       <thead>
       <tr>
         <th>Name</th>

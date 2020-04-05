@@ -10,6 +10,10 @@ export class ChemistService {
   constructor(private godService: GodService) {
   }
 
+  ApproveChemist(pk) {
+    const data = {id: pk}
+    return this.godService.authPost('chemist/approve', data);
+  }
 
   getChemist(pk): Observable<any> {
     return this.godService.authGet('chemist/' + pk);
