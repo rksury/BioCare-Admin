@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   UnApprovedDoctors = [];
   UnApprovedLabs = [];
   UnApprovedChemist = [];
-
+  popup = null;
 
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
@@ -75,6 +75,7 @@ export class DashboardComponent implements OnInit {
       this.show = true;
       // this.dtTrigger.next();
       this.rerender();
+
 
     });
   }

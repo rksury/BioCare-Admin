@@ -8,6 +8,7 @@ import {AuthService} from '../Services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   user = {};
+  popup = null;
 
   constructor(private authService: AuthService) {
   }
@@ -15,6 +16,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.getUser();
     // this.authService.verifyToken();
+    // this.showToast();
+  }
+
+  async showToast() {
+    this.popup = 'show';
+    setTimeout(function() {
+      this.popup = null;
+    }, 2000);
+
   }
 
 }
