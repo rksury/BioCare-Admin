@@ -141,11 +141,10 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>Contact </th>
+        <th>Email</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
       </thead>
       <tbody>
@@ -153,7 +152,6 @@
         <td>{{doctor.user.full_name}}</td>
         <td>{{doctor.user.mobile_number}}</td>
         <td>{{doctor.user.email}}</td>
-        <td>61</td>
         <td>
           <button (click)="editDoctorForm(doctor.id)" class="btn btn-warning" data-target="#UpdateForm" data-toggle="modal">Edit</button>
         </td>
@@ -162,16 +160,7 @@
         </td>
       </tr>
       </tbody>
-      <tfoot>
-      <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
-      </tr>
-      </tfoot>
+
     </table>
   </section>
 
