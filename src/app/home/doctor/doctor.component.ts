@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DoctorService} from '../../Services/doctor/doctor.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import validate = WebAssembly.validate;
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-doctor',
@@ -14,20 +14,21 @@ export class DoctorComponent implements OnInit {
   show = false;
   doctor;
   doctorToEdit;
+  errorMessage;
 
   DoctorForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    confirm_password: new FormControl(''),
-    email: new FormControl(''),
-    first_name: new FormControl(''),
-    last_name: new FormControl(''),
-    mobile_number: new FormControl(''),
-    address1: new FormControl(''),
-    address2: new FormControl(''),
-    zip_code: new FormControl(''),
-    city: new FormControl(''),
-    country: new FormControl(''),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    confirm_password: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    mobile_number: new FormControl('', Validators.required),
+    address1: new FormControl('', Validators.required),
+    address2: new FormControl('', Validators.required),
+    zip_code: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
   });
 
   constructor(private doctorService: DoctorService,
@@ -57,13 +58,23 @@ export class DoctorComponent implements OnInit {
   }
 
   addDoctor() {
-    this.doctorService.addDoctor(this.DoctorForm.value).subscribe();
+    console.log(this.DoctorForm)
+    this.doctorService.addDoctor(this.DoctorForm.value).subscribe(
+      data => {
+      }, error => {
+        if (error.status === 400) {
+          console.log(error);
+          this.errorMessage = error.error;
+        }
+
+      }
+    );
   }
 
   deleteDoctor(pk) {
     this.doctorService.deleteDoctor(pk).subscribe(data => {
       // this.getDoctors();
-          this.router.navigate(['/home/doctor']);
+      this.router.navigate(['/home/doctor']);
 
     });
   }
