@@ -71,26 +71,26 @@
   </section>
   <section class="content">
 
-<!--    <table id="dataTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" data-page-length='10'-->
-<!--           class="display" style="width:100%">-->
-<!--      <thead>-->
-<!--      <tr>-->
-<!--        <th>Name</th>-->
-<!--        <th>Contact Number</th>-->
-<!--        <th>e-mail</th>-->
-<!--        <th>Approve</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-<!--      <tr *ngFor="let doctor of UnApprovedDoctors">-->
-<!--        <td>{{doctor.user.full_name}}</td>-->
-<!--        <td>{{doctor.user.mobile_number}}</td>-->
-<!--        <td>{{doctor.user.email}}</td>-->
-<!--        <td>-->
-<!--          <button class="btn btn-success" (click)="ApproveDoctor(doctor.id)">Approve</button>-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
+    <table id="dataTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" data-page-length='10'
+           class="display" style="width:100%">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Contact Number</th>
+        <th>e-mail</th>
+        <th>Approve</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let doctor of UnApprovedDoctors">
+        <td>{{doctor.user.full_name}}</td>
+        <td>{{doctor.user.mobile_number}}</td>
+        <td>{{doctor.user.email}}</td>
+        <td>
+          <button class="btn btn-success" (click)="ApproveDoctor(doctor.id)">Approve</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </section>
 </div>

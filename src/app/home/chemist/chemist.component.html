@@ -19,127 +19,120 @@
                 <button class="close" data-dismiss="modal" type="button">&times;</button>
                 <h3 class="modal-title">Doctor Detail</h3>
               </div>
-               <form (ngSubmit)="addChemist()" [formGroup]="ChemistForm" class="form-horizontal" role="form">
-                  <div class="row" style="width: 100%;">
-                  <div class="col-md-6">
-
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="username" id="username" placeholder="Username"
-                             type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.username">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="password" placeholder="Password" type="password">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="confirm_password" placeholder="Confirm Password"
-                             type="password">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.confirm_password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="email" placeholder="Email" type="email">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.email">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="address1" placeholder="Address 1" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="zip_code" placeholder="ZIP" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="country" placeholder="Country" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
+              <form (ngSubmit)="addChemist()" [formGroup]="ChemistForm" class="form-horizontal" role="form">
+                <div class="row" style="width: 100%;">
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="username" id="username" placeholder="Username"
+                           type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.username">
+                        <small class="error-message">{{error}}</small>
                       </div>
                     </div>
                   </div>
-
-
-                  <div class="col-md-6">
-
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="first_name" placeholder="First Name" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.first_name">
-                          <small class="error-message">{{error}}</small>
-                        </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="email" placeholder="Email" type="email">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.email">
+                        <small class="error-message">{{error}}</small>
                       </div>
                     </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="last_name" placeholder="Last Name" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.last_name">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="mobile_number" placeholder="Mobile Number"
-                             type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.mobile_number">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="modal-body form-field" style="height: 70px;"></div>
-
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="address2" placeholder="Address 2" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-body form-field">
-                      <input class="doctor_form" formControlName="city" placeholder="City" type="text">
-                      <div *ngIf="errorMessage">
-                        <div *ngFor="let error of errorMessage.password">
-                          <small class="error-message">{{error}}</small>
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
-
                 </div>
+                <div class="row" style="width: 100%;">
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="first_name" placeholder="First Name" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.first_name">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="last_name" placeholder="Last Name" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.last_name">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="password" placeholder="Password" type="password">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="confirm_password" placeholder="Confirm Password"
+                           type="password">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.confirm_password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="width: 100%;">
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="address1" placeholder="Address 1" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="address2" placeholder="Address 2" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="zip_code" placeholder="ZIP" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="country" placeholder="Country" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
 
-               <div class="modal-footer form-field">
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="mobile_number" placeholder="Mobile Number"
+                           type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.mobile_number">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body form-field col-md-6">
+                    <input class="doctor_form" formControlName="city" placeholder="City" type="text">
+                    <div *ngIf="errorMessage">
+                      <div *ngFor="let error of errorMessage.password">
+                        <small class="error-message">{{error}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="width: 100%;">
+                  <div class="modal-footer form-field col-md-12 center">
                     <button class="btn btn-primary button" type="submit">Save</button>
                   </div>
-                 </form>
+                </div>
+              </form>
 
             </div>
 
@@ -158,45 +151,118 @@
           <button class="close" data-dismiss="modal" type="button">&times;</button>
           <h3 class="modal-title">Doctor Detail</h3>
         </div>
-        <form [formGroup]="ChemistForm" class="form-horizontal" role="form" (ngSubmit)="editChemist()">
+        <form (ngSubmit)="editChemist()" [formGroup]="ChemistForm" class="form-horizontal" role="form">
+          <div class="row" style="width: 100%;">
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="username" id="username" placeholder="Username"
+                     type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.username">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="email" placeholder="Email" type="email">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.email">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="width: 100%;">
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="first_name" placeholder="First Name" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.first_name">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
 
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="username" placeholder="Username" type="text">
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="last_name" placeholder="Last Name" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.last_name">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="password" placeholder="Password" type="password">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="confirm_password" placeholder="Confirm Password"
+                     type="password">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.confirm_password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="email" placeholder="Email" type="email">
-          </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="first_name" placeholder="First Name" type="text">
-          </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="last_name" placeholder="Last Name" type="text">
-          </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="mobile_number" placeholder="Mobile Number"
-                   type="text">
-          </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="address1" placeholder="Address 1" type="text">
-          </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="address2" placeholder="Address 2" type="text">
-          </div>
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="zip_code" placeholder="ZIP" type="text">
-          </div>
+          <div class="row" style="width: 100%;">
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="address1" placeholder="Address 1" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="address2" placeholder="Address 2" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="zip_code" placeholder="ZIP" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="country" placeholder="Country" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
 
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="city" placeholder="City" type="text">
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="mobile_number" placeholder="Mobile Number"
+                     type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.mobile_number">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="modal-body form-field col-md-6">
+              <input class="doctor_form" formControlName="city" placeholder="City" type="text">
+              <div *ngIf="errorMessage">
+                <div *ngFor="let error of errorMessage.password">
+                  <small class="error-message">{{error}}</small>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="modal-body form-field">
-            <input class="doctor_form" formControlName="country" placeholder="Country" type="text">
-          </div>
-
-
-          <div class="modal-footer form-field">
-            <button class="btn btn-primary button" type="submit">Update</button>
+          <div class="row" style="width: 100%;">
+            <div class="modal-footer form-field col-md-12 center">
+              <button class="btn btn-primary button" type="submit">Save</button>
+            </div>
           </div>
         </form>
 
@@ -212,7 +278,7 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Contact </th>
+        <th>Contact</th>
         <th>Email</th>
         <th>Update</th>
         <th>Delete</th>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DoctorService} from '../../Services/doctor/doctor.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import validate = WebAssembly.validate;
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-doctor',
@@ -32,7 +32,8 @@ export class DoctorComponent implements OnInit {
   });
 
   constructor(private doctorService: DoctorService,
-              private router: Router) {
+              private router: Router,
+              private toster: ToastrService) {
   }
 
   dtOptions: DataTables.Settings = {
@@ -50,7 +51,6 @@ export class DoctorComponent implements OnInit {
   }
 
   getDoctors() {
-    // this.show = false;
     this.doctorService.getDoctors().subscribe(doctors => {
       this.doctors = doctors;
       this.show = true;
@@ -61,10 +61,16 @@ export class DoctorComponent implements OnInit {
     console.log(this.DoctorForm)
     this.doctorService.addDoctor(this.DoctorForm.value).subscribe(
       data => {
+        this.errorMessage = null;
+        this.DoctorForm.reset();
+        this.toster.success('Doctor Added Successfully');
       }, error => {
         if (error.status === 400) {
           console.log(error);
           this.errorMessage = error.error;
+        } else {
+          this.toster.error('Doctor Was not added.');
+
         }
 
       }
@@ -73,7 +79,6 @@ export class DoctorComponent implements OnInit {
 
   deleteDoctor(pk) {
     this.doctorService.deleteDoctor(pk).subscribe(data => {
-      // this.getDoctors();
       this.router.navigate(['/home/doctor']);
 
     });
@@ -83,6 +88,8 @@ export class DoctorComponent implements OnInit {
   editDoctorForm(pk) {
     this.doctorService.getDoctor(pk).subscribe(doctor => {
       this.DoctorForm.reset();
+      this.errorMessage = null;
+
       this.DoctorForm.patchValue({
         username: doctor.user.username,
         email: doctor.user.email,
@@ -103,6 +110,8 @@ export class DoctorComponent implements OnInit {
     this.doctorService.updateDoctor(this.doctorToEdit, this.DoctorForm.value).subscribe(
       data => {
         // this.getDoctors();
+        this.DoctorForm.reset();
+        this.errorMessage = null;
       }
     );
     this.doctorToEdit = null;

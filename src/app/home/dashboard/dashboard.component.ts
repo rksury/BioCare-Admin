@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
   dtOptions: DataTables.Settings = {
     pageLength: 10
   };
-  // dtTrigger: Subject = new Subject();
+  dtTrigger: Subject<any> = new Subject();
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
       this.UnApprovedLabs = data.pending_approvals.labs;
       this.UnApprovedChemist = data.pending_approvals.chemist;
       this.show = true;
-      // this.dtTrigger.next();
+      this.dtTrigger.next();
 
     });
   }
