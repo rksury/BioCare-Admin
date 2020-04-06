@@ -10,6 +10,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class ChemistComponent implements OnInit {
   chemists;
   show = false;
+  chemist;
   chemistToEdit;
   errorMessage;
   dtOptions: DataTables.Settings = {};
@@ -66,7 +67,7 @@ export class ChemistComponent implements OnInit {
     this.chemistService.deleteChemist(pk).subscribe();
   }
   showProfile(chemist) {
-    this.chemists = chemist;
+    this.chemist = chemist;
   }
 
 

@@ -11,6 +11,7 @@ export class LabComponent implements OnInit {
   labs;
   show = false;
   dtOptions: DataTables.Settings = {};
+  lab;
   labToEdit;
 errorMessage;
 
@@ -61,7 +62,7 @@ errorMessage;
   }
 
   showProfile(lab) {
-    this.labs = lab;
+    this.lab = lab;
   }
 
 

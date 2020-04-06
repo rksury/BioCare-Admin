@@ -298,12 +298,12 @@
             </button>
           </td>
           <td style="text-align: center;">
-            <button (click)="editChemistForm(chemist.id)" class="btn btn-warning" data-target="#UpdateForm"
+            <button (click)="editChemistForm(chemist.id)" class="btn btn-warning table_button" data-target="#UpdateForm"
                     data-toggle="modal">Edit
             </button>
           </td >
           <td style="text-align: center;">
-            <button (click)="deleteChemist(chemist.id)" class="btn btn-danger">Remove</button>
+            <button (click)="deleteChemist(chemist.id)" class="btn btn-danger table_button">Remove</button>
           </td>
         </tr>
         </tbody>
@@ -335,10 +335,10 @@
                        class="profile-user-img img-responsive img-circle"
                        src="data:image/png;base64,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">
 
-                  <h3 class="profile-username text-center">{{chemists.user.full_name}}</h3>
+                  <h3 class="profile-username text-center">{{chemist.user.full_name}}</h3>
 
-                  <p class="text-muted text-center">{{chemists.user.email}}</p>
-                  <p class="text-muted text-center">{{chemists.user.mobile_number}}</p>
+                  <p class="text-muted text-center">{{chemist.user.email}}</p>
+                  <p class="text-muted text-center">{{chemist.user.mobile_number}}</p>
 
                   <!--                    <ul class="list-group list-group-unbordered">-->
                   <!--                      <li class="list-group-item">-->
@@ -368,7 +368,7 @@
 
                     <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-                    <p class="text-muted">{{chemists.user.address.address1}}, {{chemists.user.address.address2}}</p>
+                    <p class="text-muted">{{chemist.user.address.address1}}, {{chemist.user.address.address2}}</p>
 
                     <!--                    <hr>-->
 

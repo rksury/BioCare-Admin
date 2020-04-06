@@ -292,9 +292,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let doctor of doctors">
-        <td style="text-align: center;">{{doctor.user.full_name}}</td>
-        <td style="text-align: center;">{{doctor.user.mobile_number}}</td>
-        <td style="text-align: center;">{{doctor.user.email}}</td>
+        <td >{{doctor.user.full_name}}</td>
+        <td >{{doctor.user.mobile_number}}</td>
+        <td >{{doctor.user.email}}</td>
         <td style="text-align: center;">
           <button (click)="showProfile(doctor)" class="btn btn-primary table_button" data-target="#modal-fullscreen"
                   data-toggle="modal">View
