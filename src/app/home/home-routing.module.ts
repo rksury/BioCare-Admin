@@ -10,15 +10,15 @@ import {PatientComponent} from './patient/patient.component';
 
 const routes: Routes = [
   {
-    path: 'home', component: HomeComponent,
+    path: '', component: HomeComponent,
     children: [
 
-      {path: 'dashboard', component: DashboardComponent},
+      {path: '', component: DashboardComponent},
       {path: 'doctor', component: DoctorComponent},
       {path: 'chemist', component: ChemistComponent},
       {path: 'lab', component: LabComponent},
       {path: 'patient', component: PatientComponent},
-      {path: '', redirectTo: '/home/dashboard', pathMatch: 'full'},
+      {path: '', redirectTo: '', pathMatch: 'full'},
     ]
 
   },

@@ -66,70 +66,78 @@ table {
   width: 100%;
 }
 
-/*    checkbox           */
 
-.check_box {
-  display: block;
-  position: relative;
-  /*padding-left: 35px;*/
-  /*margin-bottom: 12px;*/
-  cursor: pointer;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
+@media (max-width: 767px) {
+	 .modal-fullscreen-xs-down {
+		 padding: 0 !important;
+	}
+	 .modal-fullscreen-xs-down .modal-dialog {
+		 width: 100%;
+		 height: 100%;
+		 margin: 0;
+		 padding: 0;
+	}
+	 .modal-fullscreen-xs-down .modal-content {
+		 height: auto;
+		 min-height: 100%;
+		 border: 0 none;
+		 border-radius: 0;
+		 box-shadow: none;
+	}
+}
+ @media (max-width: 991px) {
+	 .modal-fullscreen-sm-down {
+		 padding: 0 !important;
+	}
+	 .modal-fullscreen-sm-down .modal-dialog {
+		 width: 100%;
+		 height: 100%;
+		 margin: 0;
+		 padding: 0;
+	}
+	 .modal-fullscreen-sm-down .modal-content {
+		 height: auto;
+		 min-height: 100%;
+		 border: 0 none;
+		 border-radius: 0;
+		 box-shadow: none;
+	}
+}
+ @media (max-width: 1199px) {
+	 .modal-fullscreen-md-down {
+		 padding: 0 !important;
+	}
+	 .modal-fullscreen-md-down .modal-dialog {
+		 width: 100%;
+		 height: 100%;
+		 margin: 0;
+		 padding: 0;
+	}
+	 .modal-fullscreen-md-down .modal-content {
+		 height: auto;
+		 min-height: 100%;
+		 border: 0 none;
+		 border-radius: 0;
+		 box-shadow: none;
+	}
+}
+ .modal-fullscreen {
+	 padding-left: 15% !important;
+   padding-top: 3%;
+   padding-right: 3%;
+}
+ .modal-fullscreen .modal-dialog {
+	 width: 100%;
+	 height: 100%;
+	 margin: 0;
+	 padding: 0;
+}
+ .modal-fullscreen .modal-content {
+	 height: auto;
+	 min-height: 100%;
+	 border: 0 none;
+	 border-radius: 0;
+	 box-shadow: none;
 }
 
-/* Hide the browser's default checkbox */
-.check_box input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
 
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #3c8dbc;
-}
-
-/* On mouse-over, add a grey background color */
-.check_box:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.check_box input:checked ~ .checkmark {
-  background-color: #286090;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.check_box input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.check_box .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}

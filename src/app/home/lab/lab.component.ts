@@ -60,6 +60,10 @@ errorMessage;
     this.labService.deleteLab(pk).subscribe();
   }
 
+  showProfile(lab) {
+    this.labs = lab;
+  }
+
 
   editLabForm(pk) {
     this.labService.getLab(pk).subscribe(doctor => {

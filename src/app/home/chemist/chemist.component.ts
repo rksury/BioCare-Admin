@@ -65,6 +65,9 @@ export class ChemistComponent implements OnInit {
   deleteChemist(pk) {
     this.chemistService.deleteChemist(pk).subscribe();
   }
+  showProfile(chemist) {
+    this.chemists = chemist;
+  }
 
 
   editChemistForm(pk) {

@@ -22,7 +22,7 @@
               <form (ngSubmit)="addChemist()" [formGroup]="ChemistForm" class="form-horizontal" role="form">
                 <div class="row" style="width: 100%;">
                   <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="username" id="username" placeholder="Username"
+                    <input class="doctor_form" formControlName="username" placeholder="Username"
                            type="text">
                     <div *ngIf="errorMessage">
                       <div *ngFor="let error of errorMessage.username">
@@ -141,6 +141,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="UpdateForm" role="dialog">
     <div class="modal-dialog">
 
@@ -272,39 +273,424 @@
   </div>
 
 
-  <section *ngIf="show" class="content">
+  <div class="container-fluid" style=" margin-right: 1%;">
+    <section *ngIf="show" class="content">
 
-    <table id="dataTable" datatable [dtOptions]="dtOptions" class="display" style="width:100%">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Contact</th>
-        <th>Email</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let chemist of chemists">
-        <td>{{chemist.user.full_name}}</td>
-        <td>{{chemist.user.mobile_number}}</td>
-        <td>{{chemist.user.email}}</td>
-        <td>
-          <button (click)="editChemistForm(chemist.id)" class="btn btn-warning" data-target="#UpdateForm"
-                  data-toggle="modal">Edit
-          </button>
-        </td>
-        <td>
-          <button (click)="deleteChemist(chemist.id)" class="btn btn-danger">Remove</button>
-        </td>
-        <td>
-          <!--          <button (click)="ApproveDoctor(doctor.id)">Approve</button>-->
-        </td>
-      </tr>
-      </tbody>
+      <table [dtOptions]="dtOptions" class="display" datatable id="dataTable" style="width:100%">
+        <thead>
+        <tr>
+          <th style="text-align: center;">Name</th>
+          <th style="text-align: center;">Contact</th>
+          <th style="text-align: center;">Email</th>
+          <th style="text-align: center;">View Profile</th>
+          <th style="text-align: center;">Update</th>
+          <th style="text-align: center;">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let chemist of chemists">
+          <td>{{chemist.user.full_name}}</td>
+          <td>{{chemist.user.mobile_number}}</td>
+          <td>{{chemist.user.email}}</td>
+          <td style="text-align: center;">
+            <button (click)="showProfile(chemist)" class="btn btn-primary table_button" data-target="#modal-fullscreen"
+                    data-toggle="modal">View
+            </button>
+          </td>
+          <td style="text-align: center;">
+            <button (click)="editChemistForm(chemist.id)" class="btn btn-warning" data-target="#UpdateForm"
+                    data-toggle="modal">Edit
+            </button>
+          </td >
+          <td style="text-align: center;">
+            <button (click)="deleteChemist(chemist.id)" class="btn btn-danger">Remove</button>
+          </td>
+        </tr>
+        </tbody>
 
-    </table>
-  </section>
+      </table>
+    </section>
+  </div>
+
+  <div *ngIf="chemists" class="modal fade modal-fullscreen" id="modal-fullscreen" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+          <h4 class="modal-title" id="myModalLabel"> Chemist Profile :</h4>
+        </div>
+
+
+        <div class="modal-body">
+          <section class="content">
+
+            <div class="row">
+              <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <!--                <div class="box box-primary">-->
+                <div class="box-body box-profile">
+                  <img alt="User profile picture"
+                       class="profile-user-img img-responsive img-circle"
+                       src="data:image/png;base64,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">
+
+                  <h3 class="profile-username text-center">{{chemists.user.full_name}}</h3>
+
+                  <p class="text-muted text-center">{{chemists.user.email}}</p>
+                  <p class="text-muted text-center">{{chemists.user.mobile_number}}</p>
+
+                  <!--                    <ul class="list-group list-group-unbordered">-->
+                  <!--                      <li class="list-group-item">-->
+                  <!--                        <b>Followers</b> <a class="pull-right">1,322</a>-->
+                  <!--                      </li>-->
+                  <!--                      <li class="list-group-item">-->
+                  <!--                        <b>Following</b> <a class="pull-right">543</a>-->
+                  <!--                      </li>-->
+                  <!--                      <li class="list-group-item">-->
+                  <!--                        <b>Friends</b> <a class="pull-right">13,287</a>-->
+                  <!--                      </li>-->
+                  <!--                    </ul>-->
+
+                  <!--                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>-->
+                </div>
+                <!-- /.box-body -->
+                <!--                </div>-->
+                <!-- /.box -->
+
+                <!-- About Me Box -->
+                <div class="box box-primary">
+                  <!--                  <div class="box-header with-border">-->
+                  <!--                    <h3 class="box-title">About Me</h3>-->
+                  <!--                  </div>-->
+                  <!-- /.box-header -->
+                  <div class="box-body">
+
+                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+                    <p class="text-muted">{{chemists.user.address.address1}}, {{chemists.user.address.address2}}</p>
+
+                    <!--                    <hr>-->
+
+                    <!--                    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>-->
+                    <!--                    <p>-->
+                    <!--                      <span class="label label-danger">UI Design</span>-->
+                    <!--                      <span class="label label-success">Coding</span>-->
+                    <!--                      <span class="label label-info">Javascript</span>-->
+                    <!--                      <span class="label label-warning">PHP</span>-->
+                    <!--                      <span class="label label-primary">Node.js</span>-->
+                    <!--                    </p>-->
+
+                    <!--                    <hr>-->
+                    <!--                    -->
+                    <!--                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>-->
+                    <!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>-->
+
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- / end column -->
+              <div class="col-md-9">
+                <div class="nav-tabs-custom">
+                  <ul class="nav nav-tabs">
+                    <li class=""><a aria-expanded="false" data-toggle="tab" href="#activity">Activity</a></li>
+                    <li class=""><a aria-expanded="false" data-toggle="tab" href="#timeline">Timeline</a></li>
+                    <li class="active"><a aria-expanded="true" data-toggle="tab" href="#settings">Settings</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane" id="activity">
+                      <!-- Post -->
+                      <div class="post">
+                        <div class="user-block">
+                          <img alt="user image" class="img-circle img-bordered-sm"
+                               src="../../dist/img/user1-128x128.jpg">
+                          <span class="username">
+                          <a href="#">Jonathan Burke Jr.</a>
+                          <a class="pull-right btn-box-tool" href="#"><i class="fa fa-times"></i></a>
+                        </span>
+                          <span class="description">Shared publicly - 7:30 PM today</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <p>
+                          Lorem ipsum represents a long-held tradition for designers,
+                          typographers and the like. Some people hate it and argue for
+                          its demise, but others ignore the hate as they create awesome
+                          tools to help create filler text for everyone from bacon lovers
+                          to Charlie Sheen fans.
+                        </p>
+                        <ul class="list-inline">
+                          <li><a class="link-black text-sm" href="#"><i class="fa fa-share margin-r-5"></i> Share</a>
+                          </li>
+                          <li><a class="link-black text-sm" href="#"><i class="fa fa-thumbs-o-up margin-r-5"></i>
+                            Like</a>
+                          </li>
+                          <li class="pull-right">
+                            <a class="link-black text-sm" href="#"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                              (5)</a></li>
+                        </ul>
+
+                        <input class="form-control input-sm" placeholder="Type a comment" type="text">
+                      </div>
+                      <!-- /.post -->
+
+                      <!-- Post -->
+                      <div class="post clearfix">
+                        <div class="user-block">
+                          <img alt="User Image" class="img-circle img-bordered-sm"
+                               src="../../dist/img/user7-128x128.jpg">
+                          <span class="username">
+                          <a href="#">Sarah Ross</a>
+                          <a class="pull-right btn-box-tool" href="#"><i class="fa fa-times"></i></a>
+                        </span>
+                          <span class="description">Sent you a message - 3 days ago</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <p>
+                          Lorem ipsum represents a long-held tradition for designers,
+                          typographers and the like. Some people hate it and argue for
+                          its demise, but others ignore the hate as they create awesome
+                          tools to help create filler text for everyone from bacon lovers
+                          to Charlie Sheen fans.
+                        </p>
+
+                        <form class="form-horizontal">
+                          <div class="form-group margin-bottom-none">
+                            <div class="col-sm-9">
+                              <input class="form-control input-sm" placeholder="Response">
+                            </div>
+                            <div class="col-sm-3">
+                              <button class="btn btn-danger pull-right btn-block btn-sm" type="submit">Send</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- /.post -->
+
+                      <!-- Post -->
+                      <div class="post">
+                        <div class="user-block">
+                          <img alt="User Image" class="img-circle img-bordered-sm"
+                               src="../../dist/img/user6-128x128.jpg">
+                          <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a class="pull-right btn-box-tool" href="#"><i class="fa fa-times"></i></a>
+                        </span>
+                          <span class="description">Posted 5 photos - 5 days ago</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <div class="row margin-bottom">
+                          <div class="col-sm-6">
+                            <img alt="Photo" class="img-responsive" src="../../dist/img/photo1.png">
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-6">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <img alt="Photo" class="img-responsive" src="../../dist/img/photo2.png">
+                                <br>
+                                <img alt="Photo" class="img-responsive" src="../../dist/img/photo3.jpg">
+                              </div>
+                              <!-- /.col -->
+                              <div class="col-sm-6">
+                                <img alt="Photo" class="img-responsive" src="../../dist/img/photo4.jpg">
+                                <br>
+                                <img alt="Photo" class="img-responsive" src="../../dist/img/photo1.png">
+                              </div>
+                              <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+
+                        <ul class="list-inline">
+                          <li><a class="link-black text-sm" href="#"><i class="fa fa-share margin-r-5"></i> Share</a>
+                          </li>
+                          <li><a class="link-black text-sm" href="#"><i class="fa fa-thumbs-o-up margin-r-5"></i>
+                            Like</a>
+                          </li>
+                          <li class="pull-right">
+                            <a class="link-black text-sm" href="#"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                              (5)</a></li>
+                        </ul>
+
+                        <input class="form-control input-sm" placeholder="Type a comment" type="text">
+                      </div>
+                      <!-- /.post -->
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="timeline">
+                      <!-- The timeline -->
+                      <ul class="timeline timeline-inverse">
+                        <!-- timeline time label -->
+                        <li class="time-label">
+                        <span class="bg-red">
+                          10 Feb. 2014
+                        </span>
+                        </li>
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
+                        <li>
+                          <i class="fa fa-envelope bg-blue"></i>
+
+                          <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                            <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+                            <div class="timeline-body">
+                              Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                              weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                              jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                              quora plaxo ideeli hulu weebly balihoo...
+                            </div>
+                            <div class="timeline-footer">
+                              <a class="btn btn-primary btn-xs">Read more</a>
+                              <a class="btn btn-danger btn-xs">Delete</a>
+                            </div>
+                          </div>
+                        </li>
+                        <!-- END timeline item -->
+                        <!-- timeline item -->
+                        <li>
+                          <i class="fa fa-user bg-aqua"></i>
+
+                          <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                            <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend
+                              request
+                            </h3>
+                          </div>
+                        </li>
+                        <!-- END timeline item -->
+                        <!-- timeline item -->
+                        <li>
+                          <i class="fa fa-comments bg-yellow"></i>
+
+                          <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                            <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                            <div class="timeline-body">
+                              Take me to your leader!
+                              Switzerland is small and neutral!
+                              We are more like Germany, ambitious and misunderstood!
+                            </div>
+                            <div class="timeline-footer">
+                              <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                            </div>
+                          </div>
+                        </li>
+                        <!-- END timeline item -->
+                        <!-- timeline time label -->
+                        <li class="time-label">
+                        <span class="bg-green">
+                          3 Jan. 2014
+                        </span>
+                        </li>
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
+                        <li>
+                          <i class="fa fa-camera bg-purple"></i>
+
+                          <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                            <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                            <div class="timeline-body">
+                              <img alt="..." class="margin" src="http://placehold.it/150x100">
+                              <img alt="..." class="margin" src="http://placehold.it/150x100">
+                              <img alt="..." class="margin" src="http://placehold.it/150x100">
+                              <img alt="..." class="margin" src="http://placehold.it/150x100">
+                            </div>
+                          </div>
+                        </li>
+                        <!-- END timeline item -->
+                        <li>
+                          <i class="fa fa-clock-o bg-gray"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <div class="tab-pane active" id="settings">
+                      <form class="form-horizontal">
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputName">Name</label>
+
+                          <div class="col-sm-10">
+                            <input class="form-control" id="inputName" placeholder="Name" type="email">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputEmail">Email</label>
+
+                          <div class="col-sm-10">
+                            <input class="form-control" id="inputEmail" placeholder="Email" type="email">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputName">Name</label>
+
+                          <div class="col-sm-10">
+                            <input class="form-control" id="inputName" placeholder="Name" type="text">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputExperience">Experience</label>
+
+                          <div class="col-sm-10">
+                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="inputSkills">Skills</label>
+
+                          <div class="col-sm-10">
+                            <input class="form-control" id="inputSkills" placeholder="Skills" type="text">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                              <label>
+                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-danger" type="submit">Submit</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                  </div>
+                  <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+          </section>
+        </div>
+        <!--        <div class="modal-footer">-->
+        <!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <!--          <button type="button" class="btn btn-primary">Save changes</button>-->
+        <!--        </div>-->
+      </div>
+    </div>
+  </div>
 
 
 </div>

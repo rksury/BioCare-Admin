@@ -527,6 +527,7 @@ a:hover, a:active, a:focus {
 
 .sidebar {
     padding-bottom: 10px;
+  height: 100%;
 }
 
 .sidebar-form input:focus {
@@ -536,6 +537,7 @@ a:hover, a:active, a:focus {
 .user-panel {
     position: relative;
     width: 100%;
+
     padding: 10px;
     overflow: hidden
 }
