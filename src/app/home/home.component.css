@@ -1,3 +1,14 @@
+
+.signout-icon{
+  font-size: 15px;
+  color: white;
+  margin-left: -5%;
+  margin-top: 6%;
+}
+.signout-icon:hover{
+  font-size: 18px;
+}
+
 .treeview{
   cursor:pointer;
 }
