@@ -8,15 +8,16 @@ import {AuthService} from '../Services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   user = {
-        id: 1,
-        username: '',
-        email: '',
-        mobile_number: '',
-        first_name: '',
-        last_name: '',
-        full_name: ' ',
-        address: null
-      };
+    id: 1,
+    username: '',
+    email: '',
+    mobile_number: '',
+    first_name: '',
+    last_name: '',
+    full_name: ' ',
+    address: null,
+    fullname: ''
+  };
   popup = null;
 
   constructor(private authService: AuthService) {
