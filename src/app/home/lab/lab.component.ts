@@ -13,7 +13,7 @@ export class LabComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   lab;
   labToEdit;
-errorMessage;
+  errorMessage;
 
   LabForm = new FormGroup({
     username: new FormControl(''),
@@ -29,6 +29,7 @@ errorMessage;
     city: new FormControl(''),
     country: new FormControl(''),
   });
+
   constructor(private labService: LabService) {
   }
 
@@ -58,7 +59,9 @@ errorMessage;
   }
 
   deleteLab(pk) {
-    this.labService.deleteLab(pk).subscribe();
+    this.labService.deleteLab(pk).subscribe(data => {
+      this.getLabs();
+    });
   }
 
   showProfile(lab) {
@@ -87,7 +90,12 @@ errorMessage;
   }
 
   editLab() {
-    this.labService.updateLab(this.labToEdit, this.LabForm.value).subscribe();
+    this.labService.updateLab(this.labToEdit, this.LabForm.value).subscribe(
+      data => {
+        this.getLabs();
+
+      }
+    );
     this.labToEdit = null;
     this.LabForm.reset();
   }

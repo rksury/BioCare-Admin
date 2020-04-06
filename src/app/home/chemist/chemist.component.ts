@@ -64,8 +64,13 @@ export class ChemistComponent implements OnInit {
   }
 
   deleteChemist(pk) {
-    this.chemistService.deleteChemist(pk).subscribe();
+    this.chemistService.deleteChemist(pk).subscribe(
+      data => {
+        this.getChemists();
+      }
+    );
   }
+
   showProfile(chemist) {
     this.chemist = chemist;
   }
