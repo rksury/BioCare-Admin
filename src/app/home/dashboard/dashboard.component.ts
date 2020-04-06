@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     lab: '0',
     chemist: '0'
   };
-  user = {};
+  c = {};
 
   constructor(private dashboardService: DashboardService,
               private authService: AuthService,

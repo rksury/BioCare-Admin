@@ -1,68 +1,51 @@
-<div class="container-fluid login-page">
-  <div class="hold-transition ">
-    <div class="login-box">
-      <div class="login-logo">
-        <a><b>Company</b>Logo</a>
-      </div>
-      <!-- /.login-logo -->
-      <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+<div class="login-page">
+  <div class="container-fluid">
+    <div class="hold-transition ">
+      <div class="login-box">
+        <div class="login-logo">
+          <a><b>Company</b>Logo</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="submitform">
+          <form (ngSubmit)="onSubmit()" [formGroup]="submitform">
 
-          <div class="form-group has-feedback" style="margin-top: 20%;">
-            <input class="form-control" formControlName="username" placeholder="Username" type="text">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            <div *ngIf="formErrors">
-              <div *ngFor="let error of formErrors.email">
-                <ng-container>
-                  <small class="error-message">{{error}}</small>
-                </ng-container>
+            <div class="form-group has-feedback" style="margin-top: 20%;">
+              <input class="form-control" formControlName="username" placeholder="Username" type="text">
+              <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+              <div *ngIf="formErrors">
+                <div *ngFor="let error of formErrors.email">
+                  <ng-container>
+                    <small class="error-message">{{error}}</small>
+                  </ng-container>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group has-feedback">
-            <input class="form-control" formControlName="password" placeholder="Password" type="password">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            <div *ngIf="formErrors">
-              <div *ngFor="let error of formErrors.password">
-                <ng-container>
-                  <small class="error-message">{{error}}</small>
-                </ng-container>
+            <div class="form-group has-feedback">
+              <input class="form-control" formControlName="password" placeholder="Password" type="password">
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              <div *ngIf="formErrors">
+                <div *ngFor="let error of formErrors.password">
+                  <ng-container>
+                    <small class="error-message">{{error}}</small>
+                  </ng-container>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row" style="margin-top: 30%;">
-            <div class="col-xs-8">
-              <div class="checkbox icheck">
-                <label>
-                  <a href="#">I forgot my password</a>
-                </label>
+            <div class="row">
+              <div class="col-xs-12">
+                <button [disabled]="!submitform.valid" class="btn btn-primary btn-block btn-flat" type="submit">Sign In
+                </button>
               </div>
+              <!-- /.col -->
             </div>
-            <!-- /.col -->
-            <div class="col-xs-4">
-              <button [disabled]="!submitform.valid" class="btn btn-primary btn-block btn-flat" type="submit">Sign In
-              </button>
-            </div>
-            <!-- /.col -->
-          </div>
-        </form>
-
-
-        <!-- /.social-auth-links -->
-        <div style="text-align: center; margin-top: 20%;">
-          <button [routerLink]="['/signup']" class="btn btn-primary " style="width: 100%;"
-                  type="submit">Register a new membership
-          </button>
+          </form>
         </div>
       </div>
-      <!-- /.login-box-body -->
+
+
     </div>
-    <!-- /.login-box -->
-
-
   </div>
-</div>
 
+</div>
