@@ -84,6 +84,9 @@ export class DoctorComponent implements OnInit {
     });
   }
 
+  showProfile(doctor) {
+    this.doctor = doctor;
+  }
 
   editDoctorForm(pk) {
     this.doctorService.getDoctor(pk).subscribe(doctor => {
