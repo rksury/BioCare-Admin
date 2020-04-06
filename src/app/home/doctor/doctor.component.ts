@@ -80,6 +80,7 @@ export class DoctorComponent implements OnInit {
   deleteDoctor(pk) {
     this.doctorService.deleteDoctor(pk).subscribe(data => {
       this.router.navigate(['/home/doctor']);
+      this.getDoctors();
 
     });
   }
@@ -112,7 +113,7 @@ export class DoctorComponent implements OnInit {
   editDoctor() {
     this.doctorService.updateDoctor(this.doctorToEdit, this.DoctorForm.value).subscribe(
       data => {
-        // this.getDoctors();
+        this.getDoctors();
         this.DoctorForm.reset();
         this.errorMessage = null;
       }

@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
       this.UnApprovedChemist = data.pending_approvals.chemist;
       this.show = true;
       // this.dtTrigger.next();
-      this.rerender();
+      // this.rerender();
 
 
     });
