@@ -9,40 +9,13 @@ import {AuthService} from '../Services/auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  // public errorMessage = {
-  //      email: [
-  //          {type: 'required', message: 'email required'},
-  //
-  //
-  //      ],
-  //      password: [
-  //          {type: 'required', message: 'password required'},
-  //          {type: 'maxlength', message: 'username cant be longer than 50 characters'},
-  //          {type: 'minlength', message: 'username must be 4 characters'},
-  //
-  //      ]
-  //  };
-  //
-  // submitform = this.formbuilder.group({
-  //      email: ['string', Validators.required, Validators.email],
-  //      password: ['string', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]]
-  //  });
-
+  formErrors;
 
   submitform = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
 
   });
-
-  // get email() {
-  //       return this.submitform.get('email');
-  //   }
-  //
-  //   get password() {
-  //       return this.submitform.get('password');
-  //   }
 
 
   constructor(private router: Router,
@@ -53,12 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.submitform.value);
     this.authService.login(this.submitform.value).subscribe(
       data => {
-        window.localStorage.setItem('token', data['token']);
-        window.localStorage.setItem('user', JSON.stringify(data['user']));
-        this.router.navigate(['/home/dashboard']);
+        window.localStorage.setItem('token', data.token);
+        window.localStorage.setItem('user', JSON.stringify(data.user));
+        this.router.navigate(['/dashboard']);
+      },
+      error => {
+        if (error.status === 400) {
+          this.formErrors = error.error;
+        }
       }
     );
   }

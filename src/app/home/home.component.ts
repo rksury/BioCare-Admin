@@ -15,13 +15,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
-    // this.authService.verifyToken();
+    this.authService.verifyToken();
     // this.showToast();
+  }
+
+  logOut() {
+    this.authService.logout();
   }
 
   async showToast() {
     this.popup = 'show';
-    setTimeout(function() {
+    setTimeout(function () {
       this.popup = null;
     }, 2000);
 

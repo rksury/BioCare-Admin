@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {GodService} from '../god.service';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
               private router: Router) {
   }
 
-  login(data) {
+  login(data): Observable<any> {
     return this.godService.post('user/login', data);
   }
 
@@ -41,7 +42,6 @@ export class AuthService {
   verifyToken() {
     const payload = {token: window.localStorage.getItem('token')};
     this.godService.post('user/verify-token', payload).subscribe(data => {
-      console.log(data);
     }, error => {
       this.logout();
     });
