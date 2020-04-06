@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
         mobile_number: '',
         first_name: '',
         last_name: '',
+        fullname: '',
         full_name: ' ',
         address: null
       };
