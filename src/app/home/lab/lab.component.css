@@ -1,6 +1,7 @@
 .button {
   width: 20%;
   font-weight: bold;
+  float: right;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
 }
 

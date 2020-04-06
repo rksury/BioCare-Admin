@@ -80,16 +80,16 @@
           <div class="nav-tabs-custom">
 
             <ul class="nav nav-tabs">
-              <li class="active"><a aria-expanded="true" data-toggle="tab" href="#doctor">Doctor</a></li>
+              <li class="active"><a aria-expanded="false" data-toggle="tab" href="#doctor">Doctor</a></li>
               <li class=""><a aria-expanded="false" data-toggle="tab" href="#chemist">Chemist</a></li>
-              <li class=""><a aria-expanded="false" data-toggle="tab" href="#laboratory">Laboratory</a></li>
+              <li class=""><a aria-expanded="true" data-toggle="tab" href="#laboratory">Laboratory</a></li>
 <!--              <li class=""><a aria-expanded="false" data-toggle="tab" href="#patient">Patient</a></li>-->
             </ul>
 
             <div class="tab-content">
 
               <!-- doctor table-->
-              <div class="tab-pane" id="doctor">
+              <div class="tab-pane active" id="doctor">
                 <h3>Doctors</h3>
                 <section class="content">
                   <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display" data-page-length='10' datatable
@@ -151,7 +151,7 @@
               <!-- ///////////////////////////////////////////////////////////////////////////-->
 
               <!---laboratory table-->
-              <div class="tab-pane active" id="laboratory">
+              <div class="tab-pane" id="laboratory">
                 <h3>Laboratory Table</h3>
                 <section class="content">
                   <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display" data-page-length='10'

@@ -1,146 +1,147 @@
 <div class="content-wrapper">
   <section class="content-header">
-    <h1>Chemist:</h1>
-  </section>
-
-
-  <div class="container" style="margin-top: 2%;">
     <div class="row">
       <div class="col-md-6 ">
-        <input class="btn btn-primary button" data-target="#myModal" data-toggle="modal" type="button" value="Add+">
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
 
-            <!--             Modal content-->
-            <div class="modal-content">
+        <h2>Chemist:</h2>
+      </div>
 
-              <div class="modal-header">
-                <button class="close" data-dismiss="modal" type="button">&times;</button>
-                <h3 class="modal-title">Doctor Detail</h3>
+        <div class="col-md-6 ">
+          <input class="btn btn-primary button" data-target="#myModal" data-toggle="modal" type="button" value="Add+">
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+              <!--             Modal content-->
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <button class="close" data-dismiss="modal" type="button">&times;</button>
+                  <h3 class="modal-title">Doctor Detail</h3>
+                </div>
+                <form (ngSubmit)="addChemist()" [formGroup]="ChemistForm" class="form-horizontal" role="form">
+                  <div class="row" style="width: 100%;">
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="username" placeholder="Username"
+                             type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.username">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="email" placeholder="Email" type="email">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.email">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="width: 100%;">
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="first_name" placeholder="First Name" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.first_name">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="last_name" placeholder="Last Name" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.last_name">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="password" placeholder="Password" type="password">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="confirm_password" placeholder="Confirm Password"
+                             type="password">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.confirm_password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="width: 100%;">
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="address1" placeholder="Address 1" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="address2" placeholder="Address 2" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="zip_code" placeholder="ZIP" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="country" placeholder="Country" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="mobile_number" placeholder="Mobile Number"
+                             type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.mobile_number">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-body form-field col-md-6">
+                      <input class="doctor_form" formControlName="city" placeholder="City" type="text">
+                      <div *ngIf="errorMessage">
+                        <div *ngFor="let error of errorMessage.password">
+                          <small class="error-message">{{error}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="width: 100%;">
+                    <div class="modal-footer form-field col-md-12 center">
+                      <button class="btn btn-primary button" type="submit">Save</button>
+                    </div>
+                  </div>
+                </form>
+
               </div>
-              <form (ngSubmit)="addChemist()" [formGroup]="ChemistForm" class="form-horizontal" role="form">
-                <div class="row" style="width: 100%;">
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="username" placeholder="Username"
-                           type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.username">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="email" placeholder="Email" type="email">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.email">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row" style="width: 100%;">
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="first_name" placeholder="First Name" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.first_name">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="last_name" placeholder="Last Name" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.last_name">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="password" placeholder="Password" type="password">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="confirm_password" placeholder="Confirm Password"
-                           type="password">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.confirm_password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row" style="width: 100%;">
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="address1" placeholder="Address 1" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="address2" placeholder="Address 2" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="zip_code" placeholder="ZIP" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="country" placeholder="Country" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="mobile_number" placeholder="Mobile Number"
-                           type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.mobile_number">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-body form-field col-md-6">
-                    <input class="doctor_form" formControlName="city" placeholder="City" type="text">
-                    <div *ngIf="errorMessage">
-                      <div *ngFor="let error of errorMessage.password">
-                        <small class="error-message">{{error}}</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row" style="width: 100%;">
-                  <div class="modal-footer form-field col-md-12 center">
-                    <button class="btn btn-primary button" type="submit">Save</button>
-                  </div>
-                </div>
-              </form>
 
             </div>
-
           </div>
         </div>
-      </div>
     </div>
-  </div>
+  </section>
+
 
   <div class="modal fade" id="UpdateForm" role="dialog">
     <div class="modal-dialog">
@@ -301,7 +302,7 @@
             <button (click)="editChemistForm(chemist.id)" class="btn btn-warning table_button" data-target="#UpdateForm"
                     data-toggle="modal">Edit
             </button>
-          </td >
+          </td>
           <td style="text-align: center;">
             <button (click)="deleteChemist(chemist.id)" class="btn btn-danger table_button">Remove</button>
           </td>
