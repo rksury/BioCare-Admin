@@ -7,7 +7,16 @@ import {AuthService} from '../Services/auth/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  user = {};
+  user = {
+        id: 1,
+        username: '',
+        email: '',
+        mobile_number: '',
+        first_name: '',
+        last_name: '',
+        full_name: ' ',
+        address: null
+      };
   popup = null;
 
   constructor(private authService: AuthService) {
