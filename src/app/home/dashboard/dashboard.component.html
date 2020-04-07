@@ -58,7 +58,7 @@
 
           <div class="info-box-content">
             <span class="info-box-text">Patients</span>
-            <span class="info-box-number">2,00</span>
+            <span class="info-box-number">00</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -96,17 +96,17 @@
                          id="datatable1" style="width:100%">
                     <thead>
                     <tr>
-                      <th style="text-align: center;">Name</th>
-                      <th style="text-align: center;">Contact Number</th>
-                      <th style="text-align: center;">e-mail</th>
+                      <th >Name</th>
+                      <th >Contact Number</th>
+                      <th >e-mail</th>
                       <th style="text-align: center;">Approve</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let doctor of UnApprovedDoctors">
-                      <td>{{doctor.user.full_name}}</td>
-                      <td>{{doctor.user.mobile_number}}</td>
-                      <td>{{doctor.user.email}}</td>
+                      <td style="text-align: left;">{{doctor.user.full_name}}</td>
+                      <td style="text-align: left;">{{doctor.user.mobile_number}}</td>
+                      <td style="text-align: left;">{{doctor.user.email}}</td>
                       <td>
                         <button (click)="ApproveDoctor(doctor.id)" class="btn btn-success">Approve</button>
                       </td>
@@ -127,17 +127,17 @@
                         id="datatable2" style="width:100%">
                     <thead>
                     <tr>
-                      <th style="text-align: center;">Name</th>
-                      <th style="text-align: center;">Contact Number</th>
-                      <th style="text-align: center;">e-mail</th>
+                      <th >Name</th>
+                      <th >Contact Number</th>
+                      <th >e-mail</th>
                       <th style="text-align: center;">Approve</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let chemist of UnApprovedChemist">
-                      <td>{{chemist.user.full_name}}</td>
-                      <td>{{chemist.user.mobile_number}}</td>
-                      <td>{{chemist.user.email}}</td>
+                      <td style="text-align: left;">{{chemist.user.full_name}}</td>
+                      <td style="text-align: left;">{{chemist.user.mobile_number}}</td>
+                      <td style="text-align: left;">{{chemist.user.email}}</td>
                       <td>
                         <button (click)="ApproveChemist(chemist.id)" class="btn btn-success">Approve</button>
                       </td>
@@ -152,23 +152,23 @@
 
               <!---laboratory table-->
               <div class="tab-pane" id="laboratory">
-                <h3>Laboratory Table</h3>
+                <h3>Laboratory </h3>
                 <section class="content">
                   <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display" data-page-length='10'
                          id="datatable3" datatable style="width:100%">
                     <thead>
                     <tr>
-                      <th style="text-align: center;">Name</th>
-                      <th style="text-align: center;">Contact Number</th>
-                      <th style="text-align: center;">e-mail</th>
+                      <th>Name</th>
+                      <th>Contact Number</th>
+                      <th >e-mail</th>
                       <th style="text-align: center;">Approve</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let lab of UnApprovedLabs">
-                      <td>{{lab.user.full_name}}</td>
-                      <td>{{lab.user.mobile_number}}</td>
-                      <td>{{lab.user.email}}</td>
+                      <td style="text-align: left;">{{lab.user.full_name}}</td>
+                      <td style="text-align: left;">{{lab.user.mobile_number}}</td>
+                      <td style="text-align: left;">{{lab.user.email}}</td>
                       <td>
                         <button (click)="ApproveLab(lab.id)" class="btn btn-success">Approve</button>
                       </td>
