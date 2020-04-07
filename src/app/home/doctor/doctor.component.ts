@@ -1,8 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {DoctorService} from '../../Services/doctor/doctor.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+
+
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+
+import {Subject} from 'rxjs';
+import {DataTableDirective} from 'angular-datatables';
+
+import {DoctorService} from '../../Services/doctor/doctor.service';
+
 
 @Component({
   selector: 'app-doctor',
@@ -36,33 +43,45 @@ export class DoctorComponent implements OnInit {
               private toster: ToastrService) {
   }
 
+   @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {
     lengthChange: false,
-    pageLength: 10,
-
+    pageLength: 10
   };
+   dtTrigger: Subject<any> = new Subject();
 
   ngOnInit() {
     this.getDoctors();
   }
 
   async delay(ms: number) {
-    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
   }
 
   getDoctors() {
     this.doctorService.getDoctors().subscribe(doctors => {
       this.doctors = doctors;
       this.show = true;
+      this.refresh();
+    });
+  }
+
+  refresh() {
+    this.doctorService.getDoctors().subscribe(data => {
+      this.show = true;
+      this.dtTrigger.next();
+      // this.rerender();
     });
   }
 
   addDoctor() {
-    console.log(this.DoctorForm)
-    this.doctorService.addDoctor(this.DoctorForm.value).subscribe(
+     console.log(this.DoctorForm);
+     this.doctorService.addDoctor(this.DoctorForm.value).subscribe(
       data => {
         this.errorMessage = null;
         this.DoctorForm.reset();
+        this.refresh();
         this.toster.success('Doctor Added Successfully');
       }, error => {
         if (error.status === 400) {
@@ -79,14 +98,15 @@ export class DoctorComponent implements OnInit {
 
   deleteDoctor(pk) {
     this.doctorService.deleteDoctor(pk).subscribe(data => {
-      this.router.navigate(['/home/doctor']);
+      this.router.navigate(['/doctor']);
       this.getDoctors();
-
+      this.refresh();
     });
   }
 
   showProfile(doctor) {
     this.doctor = doctor;
+    this.refresh();
   }
 
   editDoctorForm(pk) {
@@ -107,6 +127,7 @@ export class DoctorComponent implements OnInit {
         country: doctor.user.address.country,
       });
       this.doctorToEdit = doctor.id;
+      this.refresh();
     });
   }
 
@@ -119,7 +140,8 @@ export class DoctorComponent implements OnInit {
       }
     );
     this.doctorToEdit = null;
-    this.router.navigate(['/home/doctor']);
+    this.router.navigate(['/doctor']);
+    this.refresh();
   }
 }
 

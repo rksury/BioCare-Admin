@@ -280,12 +280,13 @@
 
     <section *ngIf="show" class="content">
 
-      <table [dtOptions]="dtOptions" class="display" datatable id="dataTable" style="width:100%">
+      <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="display"  data-page-length='10' datatable id="dataTable"
+             style="width:100%">
         <thead>
         <tr>
-          <th style="text-align: center;">Name</th>
-          <th style="text-align: center;">Contact</th>
-          <th style="text-align: center;">Email</th>
+          <th >Name</th>
+          <th >Contact</th>
+          <th >Email</th>
           <th style="text-align: center;">View Profile</th>
           <th style="text-align: center;">Update</th>
           <th style="text-align: center;">Delete</th>
@@ -424,13 +425,12 @@
                           to Charlie Sheen fans.
                         </p>
                         <ul class="list-inline">
-                          <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
+                          <li><a class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
                           </li>
-                          <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i>
-                            Like</a>
+                          <li><a  class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i>Like</a>
                           </li>
                           <li class="pull-right">
-                            <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                            <a  class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
                               (5)</a></li>
                         </ul>
 
@@ -687,10 +687,7 @@
 
           </section>
         </div>
-        <!--        <div class="modal-footer">-->
-        <!--          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        <!--          <button type="button" class="btn btn-primary">Save changes</button>-->
-        <!--        </div>-->
+
       </div>
     </div>
   </div>

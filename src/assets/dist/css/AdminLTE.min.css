@@ -3573,7 +3573,8 @@ table.text-center, table.text-center td, table.text-center th {
     background: #fff;
     padding: 20px;
     border-top: 0;
-    color: #666
+    color: #666;
+    height: 300px;
 }
 
 .login-box-body .form-control-feedback, .register-box-body .form-control-feedback {

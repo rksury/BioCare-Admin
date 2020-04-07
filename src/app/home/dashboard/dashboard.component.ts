@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {DashboardService} from '../../Services/dashboard/dashboard.service';
 import {AuthService} from '../../Services/auth/auth.service';
-import {MatTableDataSource} from '@angular/material/table';
-import {DoctorService} from '../../Services/doctor/doctor.service';
+
 import {Subject} from 'rxjs';
 import {DataTableDirective} from 'angular-datatables';
+
+import {DashboardService} from '../../Services/dashboard/dashboard.service';
+import {DoctorService} from '../../Services/doctor/doctor.service';
 import {ChemistService} from '../../Services/chemist/chemist.service';
 import {LabService} from '../../Services/lab/lab.service';
 

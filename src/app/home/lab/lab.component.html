@@ -279,12 +279,13 @@
 
     <section *ngIf="show" class="content">
 
-      <table [dtOptions]="dtOptions" class="display" datatable id="dataTable" style="width:100%">
+      <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="display" datatable id="dataTable"  data-page-length='10'
+             style="width:100%">
         <thead>
         <tr>
-          <th style="text-align: center;">Name</th>
-          <th style="text-align: center;">Contact</th>
-          <th style="text-align: center;">Email</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Email</th>
           <th style="text-align: center;">View Profile</th>
           <th style="text-align: center;">Update</th>
           <th style="text-align: center;">Delete</th>

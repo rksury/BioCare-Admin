@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChemistService} from '../../Services/chemist/chemist.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {DataTableDirective} from 'angular-datatables';
+import {Subject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-chemist',
@@ -13,7 +16,6 @@ export class ChemistComponent implements OnInit {
   chemist;
   chemistToEdit;
   errorMessage;
-  dtOptions: DataTables.Settings = {};
 
   ChemistForm = new FormGroup({
     username: new FormControl(''),
@@ -30,11 +32,19 @@ export class ChemistComponent implements OnInit {
     country: new FormControl(''),
   });
 
-  constructor(private chemistService: ChemistService) {
-  }
+  constructor(private chemistService: ChemistService,
+              private router: Router) {}
+
+   @ViewChild(DataTableDirective, {static: false})
+    dtElement: DataTableDirective;
+    dtOptions: DataTables.Settings = {
+      lengthChange: false,
+      pageLength: 10
+  };
+   dtTrigger: Subject<any> = new Subject();
 
   ngOnInit(): void {
-    this.getChemists();
+     this.getChemists();
   }
 
   getChemists() {
@@ -42,6 +52,16 @@ export class ChemistComponent implements OnInit {
     this.chemistService.getChemists().subscribe(chemists => {
       this.chemists = chemists;
       this.show = true;
+       // this.dtTrigger.next();
+      this.refresh();
+    });
+  }
+
+   refresh() {
+    this.chemistService.getChemists().subscribe(data => {
+      this.show = true;
+      this.dtTrigger.next();
+      // this.rerender();
     });
   }
 
@@ -50,9 +70,12 @@ export class ChemistComponent implements OnInit {
   // }
 
   addChemist() {
-    console.log(this.ChemistForm)
+    console.log(this.ChemistForm);
     this.chemistService.addChemist(this.ChemistForm.value).subscribe(
       data => {
+         this.errorMessage = null;
+         this.ChemistForm.reset();
+         this.refresh();
       }, error => {
         if (error.status === 400) {
           console.log(error);
@@ -67,12 +90,14 @@ export class ChemistComponent implements OnInit {
     this.chemistService.deleteChemist(pk).subscribe(
       data => {
         this.getChemists();
+        this.refresh();
       }
     );
   }
 
   showProfile(chemist) {
     this.chemist = chemist;
+    this.refresh();
   }
 
 
@@ -92,6 +117,7 @@ export class ChemistComponent implements OnInit {
         country: doctor.user.address.country,
       });
       this.chemistToEdit = doctor.id;
+      this.refresh();
     });
   }
 
@@ -103,6 +129,7 @@ export class ChemistComponent implements OnInit {
     );
     this.chemistToEdit = null;
     this.ChemistForm.reset();
+    this.refresh();
   }
 
 }

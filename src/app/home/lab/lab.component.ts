@@ -1,6 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {LabService} from '../../Services/lab/lab.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+
+import {DataTableDirective} from 'angular-datatables';
+import {Subject} from 'rxjs';
+
+import {LabService} from '../../Services/lab/lab.service';
+
+
 
 @Component({
   selector: 'app-lab',
@@ -10,7 +19,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class LabComponent implements OnInit {
   labs;
   show = false;
-  dtOptions: DataTables.Settings = {};
   lab;
   labToEdit;
   errorMessage;
@@ -30,8 +38,17 @@ export class LabComponent implements OnInit {
     country: new FormControl(''),
   });
 
-  constructor(private labService: LabService) {
+  constructor(private labService: LabService,
+              private router: Router,
+              private toster: ToastrService) {
   }
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {
+    lengthChange: false,
+    pageLength: 10
+  };
+   dtTrigger: Subject<any> = new Subject();
 
   ngOnInit(): void {
     this.getLabs();
@@ -41,13 +58,24 @@ export class LabComponent implements OnInit {
     this.labService.getLabs().subscribe(labs => {
       this.labs = labs;
       this.show = true;
+      this.refresh();
+    });
+  }
+   refresh() {
+    this.labService.getLabs().subscribe(data => {
+      this.show = true;
+      this.dtTrigger.next();
+      // this.rerender();
     });
   }
 
   addLab() {
-    console.log(this.LabForm)
+    console.log(this.LabForm);
     this.labService.addLab(this.LabForm.value).subscribe(
       data => {
+        this.errorMessage = null;
+        this.LabForm.reset();
+        this.refresh();
       }, error => {
         if (error.status === 400) {
           console.log(error);
@@ -60,18 +88,21 @@ export class LabComponent implements OnInit {
 
   deleteLab(pk) {
     this.labService.deleteLab(pk).subscribe(data => {
+      this.router.navigate(['/lab']);
       this.getLabs();
+      this.refresh();
     });
   }
 
   showProfile(lab) {
     this.lab = lab;
+    this.refresh();
   }
 
 
   editLabForm(pk) {
     this.labService.getLab(pk).subscribe(doctor => {
-      console.log(doctor)
+      console.log(doctor);
       this.LabForm.reset();
       this.LabForm.patchValue({
         username: doctor.user.username,
@@ -86,6 +117,7 @@ export class LabComponent implements OnInit {
         country: doctor.user.address.country,
       });
       this.labToEdit = doctor.id;
+      this.refresh();
     });
   }
 
@@ -93,10 +125,11 @@ export class LabComponent implements OnInit {
     this.labService.updateLab(this.labToEdit, this.LabForm.value).subscribe(
       data => {
         this.getLabs();
-
       }
     );
     this.labToEdit = null;
+    this.router.navigate(['/lab']);
     this.LabForm.reset();
+    this.refresh();
   }
 }
