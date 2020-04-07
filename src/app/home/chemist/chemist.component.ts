@@ -48,11 +48,10 @@ export class ChemistComponent implements OnInit {
   }
 
   getChemists() {
-    // this.show = false;
     this.chemistService.getChemists().subscribe(chemists => {
       this.chemists = chemists;
       this.show = true;
-       // this.dtTrigger.next();
+      this.dtTrigger.next();
       this.refresh();
     });
   }
@@ -62,6 +61,12 @@ export class ChemistComponent implements OnInit {
       this.show = true;
       this.dtTrigger.next();
       // this.rerender();
+    });
+  }
+  refreshChemist() {
+    this.chemistService.getChemists().subscribe(chemists => {
+      this.chemists = chemists;
+      this.show = true;
     });
   }
 
@@ -75,7 +80,6 @@ export class ChemistComponent implements OnInit {
       data => {
          this.errorMessage = null;
          this.ChemistForm.reset();
-         this.refresh();
       }, error => {
         if (error.status === 400) {
           console.log(error);
@@ -89,15 +93,13 @@ export class ChemistComponent implements OnInit {
   deleteChemist(pk) {
     this.chemistService.deleteChemist(pk).subscribe(
       data => {
-        this.getChemists();
-        this.refresh();
+        this.refreshChemist();
       }
     );
   }
 
   showProfile(chemist) {
     this.chemist = chemist;
-    this.refresh();
   }
 
 
@@ -117,19 +119,20 @@ export class ChemistComponent implements OnInit {
         country: doctor.user.address.country,
       });
       this.chemistToEdit = doctor.id;
-      this.refresh();
     });
   }
 
   editChemist() {
     this.chemistService.updateChemist(this.chemistToEdit, this.ChemistForm.value).subscribe(
       data => {
-        this.getChemists();
+        this.refreshChemist();
+        this.ChemistForm.reset();
+        this.errorMessage = null;
       }
     );
     this.chemistToEdit = null;
-    this.ChemistForm.reset();
-    this.refresh();
+    this.router.navigate(['/chemist']);
+
   }
 
 }

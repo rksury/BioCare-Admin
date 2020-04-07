@@ -22,6 +22,9 @@ export class DoctorComponent implements OnInit {
   doctor;
   doctorToEdit;
   errorMessage;
+  count = {
+    doctor: '0'
+  };
 
   DoctorForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -37,19 +40,18 @@ export class DoctorComponent implements OnInit {
     city: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
   });
-
-  constructor(private doctorService: DoctorService,
-              private router: Router,
-              private toster: ToastrService) {
-  }
-
-   @ViewChild(DataTableDirective, {static: false})
+  @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {
     lengthChange: false,
     pageLength: 10
   };
-   dtTrigger: Subject<any> = new Subject();
+  dtTrigger: Subject<any> = new Subject();
+
+  constructor(private doctorService: DoctorService,
+              private router: Router,
+              private toster: ToastrService) {
+  }
 
   ngOnInit() {
     this.getDoctors();
@@ -63,11 +65,12 @@ export class DoctorComponent implements OnInit {
     this.doctorService.getDoctors().subscribe(doctors => {
       this.doctors = doctors;
       this.show = true;
+      this.dtTrigger.next();
       this.refresh();
     });
   }
 
-  refresh() {
+   refresh() {
     this.doctorService.getDoctors().subscribe(data => {
       this.show = true;
       this.dtTrigger.next();
@@ -75,13 +78,18 @@ export class DoctorComponent implements OnInit {
     });
   }
 
+  refreshDoctors() {
+    this.doctorService.getDoctors().subscribe(doctors => {
+      this.doctors = doctors;
+      this.show = true;
+    });
+  }
   addDoctor() {
-     console.log(this.DoctorForm);
-     this.doctorService.addDoctor(this.DoctorForm.value).subscribe(
+    console.log(this.DoctorForm);
+    this.doctorService.addDoctor(this.DoctorForm.value).subscribe(
       data => {
         this.errorMessage = null;
         this.DoctorForm.reset();
-        this.refresh();
         this.toster.success('Doctor Added Successfully');
       }, error => {
         if (error.status === 400) {
@@ -96,17 +104,15 @@ export class DoctorComponent implements OnInit {
     );
   }
 
+
   deleteDoctor(pk) {
     this.doctorService.deleteDoctor(pk).subscribe(data => {
-      this.router.navigate(['/doctor']);
-      this.getDoctors();
-      this.refresh();
+      this.refreshDoctors();
     });
   }
 
   showProfile(doctor) {
     this.doctor = doctor;
-    this.refresh();
   }
 
   editDoctorForm(pk) {
@@ -127,21 +133,19 @@ export class DoctorComponent implements OnInit {
         country: doctor.user.address.country,
       });
       this.doctorToEdit = doctor.id;
-      this.refresh();
     });
   }
 
   editDoctor() {
     this.doctorService.updateDoctor(this.doctorToEdit, this.DoctorForm.value).subscribe(
       data => {
-        this.getDoctors();
+        this.refreshDoctors();
         this.DoctorForm.reset();
         this.errorMessage = null;
       }
     );
     this.doctorToEdit = null;
     this.router.navigate(['/doctor']);
-    this.refresh();
   }
 }
 

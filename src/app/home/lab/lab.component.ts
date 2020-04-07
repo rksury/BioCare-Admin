@@ -68,6 +68,12 @@ export class LabComponent implements OnInit {
       // this.rerender();
     });
   }
+  refreshLabs() {
+    this.labService.getLabs().subscribe(labs => {
+      this.labs = labs;
+      this.show = true;
+    });
+  }
 
   addLab() {
     console.log(this.LabForm);
@@ -88,15 +94,12 @@ export class LabComponent implements OnInit {
 
   deleteLab(pk) {
     this.labService.deleteLab(pk).subscribe(data => {
-      this.router.navigate(['/lab']);
-      this.getLabs();
-      this.refresh();
+      this.refreshLabs();
     });
   }
 
   showProfile(lab) {
     this.lab = lab;
-    this.refresh();
   }
 
 
@@ -117,19 +120,19 @@ export class LabComponent implements OnInit {
         country: doctor.user.address.country,
       });
       this.labToEdit = doctor.id;
-      this.refresh();
     });
   }
 
   editLab() {
     this.labService.updateLab(this.labToEdit, this.LabForm.value).subscribe(
       data => {
-        this.getLabs();
+        this.refreshLabs();
+        this.LabForm.reset();
+        this.errorMessage = null;
       }
     );
     this.labToEdit = null;
     this.router.navigate(['/lab']);
-    this.LabForm.reset();
-    this.refresh();
+
   }
 }
