@@ -17,8 +17,6 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
 
   });
-
-
   constructor(private router: Router,
               private authService: AuthService,
               private toast: ToastrService) {
@@ -33,7 +31,7 @@ export class LoginComponent implements OnInit {
       data => {
         window.localStorage.setItem('token', data.token);
         window.localStorage.setItem('user', JSON.stringify(data.user));
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       },
       error => {
         if (error.status === 400) {

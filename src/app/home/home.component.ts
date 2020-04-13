@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   async showToast() {
     this.popup = 'show';
-    setTimeout(function () {
+    setTimeout(function() {
       this.popup = null;
     }, 2000);
 

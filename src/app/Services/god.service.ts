@@ -7,12 +7,12 @@ import {HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class GodService {
-  baseUrl = environment.base_Url
+  baseUrl = environment.base_Url;
 
   constructor(private httpClient: HttpClient) {
   }
 
-  get headerss() {
+  get headers() {
     const httpOptions = {
       headers: new HttpHeaders({
           Authorization: 'Bearer ' + window.localStorage.getItem('token')
@@ -44,7 +44,7 @@ export class GodService {
     const httpOptions = {
       headers: {'Content-Type': 'application/json'},
     };
-    return this.httpClient.post(this.baseUrl + url, data, httpOptions)
+    return this.httpClient.post(this.baseUrl + url, data, httpOptions);
   }
 
   authDelete(url) {

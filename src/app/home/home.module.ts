@@ -9,7 +9,7 @@ import {DoctorComponent} from './doctor/doctor.component';
 import {ChemistComponent} from './chemist/chemist.component';
 import {LabComponent} from './lab/lab.component';
 import {PatientComponent} from './patient/patient.component';
-// import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {DataTablesModule} from 'angular-datatables';
