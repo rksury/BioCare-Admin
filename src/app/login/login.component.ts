@@ -21,11 +21,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService,
-              private tost: ToastrService) {
+              private toast: ToastrService) {
   }
 
   ngOnInit() {
-    this.authService.verifyToken()
+    this.authService.verifyToken();
   }
 
   onSubmit() {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       error => {
         if (error.status === 400) {
           if (error.error.error) {
-            this.tost.error(error.error.error);
+            this.toast.error(error.error.error);
           }
           this.formErrors = error.error;
         }
